@@ -1,0 +1,1 @@
+{"version":3,"sources":["styles.scss"],"names":[],"mappings":"AAAA,YAAY,CAAC;EACT,UAAU,EAAE,GAAI,GACnB","file":"../styles.css","sourcesContent":[".placeholder {\r\n    background: red;\r\n}"]}
