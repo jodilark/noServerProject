@@ -1,0 +1,13 @@
+<h2>Recipe</h2>
+<p>Quantity to make:{{qtyToMake}}</p>
+
+{{thisRecipe.name}}
+<ul>
+    <li>Class: {{thisRecipe.class_name}}</li>
+    <li><img src="{{thisRecipe.icon}}" alt=""></li>
+    <li ng-repeat='item in tree'><span ng-model="itemName">{{item.category_name}}:</span> <test-directive></test-directive> <span ng-model="itemConnected">{{item.connected}}</span> {{item.name}}  x{{item.quantity * qtyToMake}}</li>
+    
+</ul>
+
+<button ng-click="isConnected(itemConnected, itemName)">TEST</button>
+

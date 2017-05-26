@@ -1,3 +1,12 @@
-.placeholder {
-    background: red;
+.tests {
+    border: dotted 1px red;
+    background: rgba(0, 0, 0, .04);
+    color: rgba(0, 0, 0, .5);
 }
+
+.second-view {
+    border: solid 3px blue;
+    height: 100vh;
+
+}
+

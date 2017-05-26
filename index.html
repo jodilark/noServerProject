@@ -1,17 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="noServer">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Shopping List</title>
     <link rel="stylesheet" href="/dist/styles.css">
 </head>
 
-<body>
+<body ng-controller="changeMeController">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+    <div class="tests">
+        <!--TESTS-->
+        <li> {{controllerTest}} </li>
+        <li> {{serviceTest}} </li>
+        <li> {{recipeListServiceTest}} </li>
+        <li> {{singleRecipeServiceTest}} </li>
+        <br/>
+        <p> Hello World </p>
+    </div>
+    <button ui-sref="home">Home</button>
+
+    <!--<form action="" method="get"> <form ng-submit="onFormSubmission($event)"> -->
+    <form>
+        <input list="selectRecipe" name="selectRecipe" placeholder="Enter or choose a recipe" ng-model="selectedRecipe">
+        <datalist id="selectRecipe">
+            <option ng-repeat="recipe in recipeCard">{{recipe.id}} {{recipe.name}}</option>
+        </datalist>
+        <input type="number" placeholder="qty" id="selectRecipe" ng-model="qtyToMake">
+        <input type="submit" value="Get Recipe" ui-sref="recipe" ng-click="id(selectedRecipe)">
+    </form>
+
+
+    
+
+
+    <h3>UI View is Below</h3>
+    <div class="second-view">
+        <!--selected recipe-->
+
+        <ui-view></ui-view>
+    </div>
+
+
+    <!--put footer directive here-->
+
+
+
+
+    <!--SCRIPTS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js'></script>
     <script src="dist/js/bundle.js"></script>
 </body>
 
