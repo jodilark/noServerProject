@@ -1,11 +1,5 @@
-angular.module("noServer").directive('testDirective', function () {
+angular.module("noServer").directive('testDirective', function (recipeListService, singleRecipeService) {
     return {
-        replace: true
-        , templateUrl: '../../views/testDirective.html'
-        , link: function (scope, element, attribute) {
-            if (scope.itemConnected = true){
-                element.css("height", "0px")
-            }
-        }
+        templateUrl: '../../views/testDirective.html'
     }
 })

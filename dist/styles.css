@@ -91,4 +91,14 @@ input, select {
   border: solid 3px blue;
   height: 100vh; }
 
+.droplist {
+  height: 400px;
+  overflow-y: auto !important;
+  display: block !important; }
+
+.scrollable {
+  display: none;
+  height: 50px;
+  overflow-y: 50px; }
+
 /*# sourceMappingURL=maps/styles.css.map */

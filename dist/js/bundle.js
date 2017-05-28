@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('noServer', ['ui.router']).config(function ($stateProvider, $urlRouterProvider) {
+angular.module('noServer', ['ui.router', 'ui.select', 'ngSanitize']).config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/', "");
     $stateProvider.state('home', {
         templateUrl: './views/home.html',
@@ -21,7 +21,7 @@ angular.module('noServer').controller('changeMeController', function ($scope, ch
 
     // list of variables   
     $scope.selectedRecipe; //two way binding
-    $scope.qtyToMake; //two way binding
+    $scope.qtyToMake = 1; //two way binding
     $scope.id = function (selectedRecipe) {
         $scope.theRecipe(selectedRecipe.match(/\d/ig).join(''));
     };
@@ -44,24 +44,89 @@ angular.module('noServer').controller('changeMeController', function ($scope, ch
         });
     };
 
-    // helper method to check if item is "connected"
-    $scope.isConnected = function (itemConnected, itemName) {
-        if (itemConnected = true) {
-            console.log(itemName);
+    // show directive span if recipe has a url_type = 'recipe'
+    $scope.isRecipe = function (urltype) {
+        return urltype > 0;
+    };
+
+    //test to loop through object
+    $scope.foo = function (obj) {
+        if (obj === undefined || obj === null) {
+            return;
+        } else {
+            var array = [];
+            array.push(Object.keys(obj));
+            var bob = array.join("");
+            return $scope.mynewitem = 'item.synths[' + bob + '].tree';
         }
+    };
+
+    //add tier1 objects to raw material array
+    var rawArr = [];
+    $scope.rawMat = rawArr;
+    $scope.raw = function (name, qty, sName, sQty, recipeBool) {
+        // console.log(`this is the name ${name}`)
+        // console.log(`this is the qty ${qty}`)
+        // console.log(`this is the sName ${sName}`)
+        // console.log(`this is the sQty ${sQty}`)
+        if (recipeBool) {
+            // console.log(`yup true`)
+            rawArr.push({
+                sName: sName,
+                sqty: sQty
+            });
+        } else {
+            rawArr.push({
+                iName: name,
+                iqty: qty
+            });
+        }
+
+        return rawArr; //of raw objects and their quantities
+    };
+
+    // combine duplicate mats
+    $scope.combineMats = function (rawArr) {
+        //make all name say sName
+        for (var _i = 0; _i < rawArr.length; _i++) {
+            for (var key in rawArr[_i]) {
+                // console.log(`key is ${key}`)
+                if (key === 'iName') {
+                    // console.log(`this is the iName - ${key}`)
+                    rawArr[_i]['sName'] = rawArr[_i]['iName'];
+                    rawArr[_i]['sqty'] = rawArr[_i]['iqty'];
+                    delete rawArr[_i]['iName'];
+                    delete rawArr[_i]['iqty'];
+                }
+            }
+        }
+        //add duplicate names
+        var a = rawArr;
+        var ans = {};
+
+        for (var i = 0; i < a.length; ++i) {
+            console.log(i);
+            console.log(a[i]);
+            for (var obj in a[i]) {
+
+                ans[obj] = ans[obj] ? ans[obj] + a[i][obj] : a[i][obj];
+            }
+        }
+        console.log('this is a = ' + ans.sName + ' ' + ans.sqty);
+
+        // return rawMaterials
+    };
+
+    //just to check the rawArr
+    $scope.checkRawArr = function (rawArr) {
+        console.log(rawArr);
     };
 });
 'use strict';
 
-angular.module("noServer").directive('testDirective', function () {
+angular.module("noServer").directive('testDirective', function (recipeListService, singleRecipeService) {
     return {
-        replace: true,
-        templateUrl: '../../views/testDirective.html',
-        link: function link(scope, element, attribute) {
-            if (scope.itemConnected = true) {
-                element.css("height", "0px");
-            }
-        }
+        templateUrl: '../../views/testDirective.html'
     };
 });
 'use strict';

@@ -7,7 +7,7 @@ angular.module('noServer').controller('changeMeController', function ($scope, ch
 
     // list of variables   
     $scope.selectedRecipe //two way binding
-    $scope.qtyToMake //two way binding
+    $scope.qtyToMake = 1 //two way binding
     $scope.id = (selectedRecipe) => {
         $scope.theRecipe(selectedRecipe.match(/\d/ig).join(''))
     }
@@ -34,12 +34,94 @@ angular.module('noServer').controller('changeMeController', function ($scope, ch
     }
 
 
-    // helper method to check if item is "connected"
-$scope.isConnected = function(itemConnected, itemName){
-    if(itemConnected = true){
-        console.log(itemName)
+    // show directive span if recipe has a url_type = 'recipe'
+    $scope.isRecipe = function (urltype) {
+        return urltype > 0
     }
-}
+
+    //test to loop through object
+    $scope.foo = function (obj) {
+        if (obj === undefined || obj === null) {
+            return
+        }
+        else {
+            let array = []
+            array.push(Object.keys(obj))
+            var bob = array.join("")
+            return $scope.mynewitem = `item.synths[${bob}].tree`
+        }
+    }
+
+
+
+    //add tier1 objects to raw material array
+    var rawArr = []
+    $scope.rawMat = rawArr
+    $scope.raw = function (name, qty, sName, sQty, recipeBool) {
+        // console.log(`this is the name ${name}`)
+        // console.log(`this is the qty ${qty}`)
+        // console.log(`this is the sName ${sName}`)
+        // console.log(`this is the sQty ${sQty}`)
+        if (recipeBool) {
+            // console.log(`yup true`)
+            rawArr.push(
+                {
+                   sName: sName
+                    , sqty: sQty
+                }
+            )
+        }
+        else {
+            rawArr.push(
+                {
+                    iName: name
+                    , iqty: qty
+                }
+            )
+        }
+
+        return rawArr //of raw objects and their quantities
+    }
+
+    // combine duplicate mats
+    $scope.combineMats = function (rawArr) {
+        //make all name say sName
+        for (let i = 0; i < rawArr.length; i++) {
+            for (let key in rawArr[i]) {
+                // console.log(`key is ${key}`)
+                if (key === 'iName') {
+                    // console.log(`this is the iName - ${key}`)
+                    rawArr[i]['sName'] = rawArr[i]['iName'];
+                    rawArr[i]['sqty'] = rawArr[i]['iqty'];
+                    delete rawArr[i]['iName'];
+                    delete rawArr[i]['iqty'];
+                }
+            }
+        }
+        //add duplicate names
+        var a = rawArr;
+        var ans = {};
+
+        for (var i = 0; i < a.length; ++i) {
+            console.log(i)
+            console.log(a[i])
+            for (var obj in a[i]) {
+        
+                    ans[obj] = ans[obj] ? ans[obj] + a[i][obj] : a[i][obj];
+                
+            }
+        }
+        console.log(`this is a = ${ans.sName} ${ans.sqty}`)
+
+        // return rawMaterials
+    }
+
+
+    //just to check the rawArr
+    $scope.checkRawArr = function (rawArr) {
+        console.log(rawArr)
+    }
+
 
 
 

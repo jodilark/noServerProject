@@ -1,4 +1,4 @@
-angular.module('noServer', ['ui.router'])
+angular.module('noServer', ['ui.router', 'ui.select', 'ngSanitize'])
     .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/', "")
         $stateProvider

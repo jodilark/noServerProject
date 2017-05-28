@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shopping List</title>
-    <link rel="stylesheet" href="/dist/styles.5ab237b7.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+    <link rel="stylesheet" href="/dist/styles.8416ce84.css">
 </head>
 
 <body ng-controller="changeMeController">
@@ -24,16 +25,29 @@
 
     <!--<form action="" method="get"> <form ng-submit="onFormSubmission($event)"> -->
     <form>
-        <input list="selectRecipe" name="selectRecipe" placeholder="Enter or choose a recipe" ng-model="selectedRecipe">
+        <input list="selectRecipe" class="scrollable" name="selectRecipe" placeholder="Enter or choose a recipe" ng-model="selectedRecipe">
         <datalist id="selectRecipe">
-            <option ng-repeat="recipe in recipeCard">{{recipe.id}} {{recipe.name}}</option>
+            <option ng-repeat="recipe in recipeCard" class="droplist">{{recipe.id}} {{recipe.name}}</option>
         </datalist>
         <input type="number" placeholder="qty" id="selectRecipe" ng-model="qtyToMake">
         <input type="submit" value="Get Recipe" ui-sref="recipe" ng-click="id(selectedRecipe)">
     </form>
 
 
-    
+    <!--<div>
+        <ui-select ng-model="selectedRecipe" style="min-width: 300px;" title="Choose a recipe">
+            <ui-select-match>{{$select.selected.name}}</ui-select-match>
+            <ui-select-choices repeat="recipe in recipeCard | filter: $select.search">
+                <small>
+                    {{recipe.id}} {{recipe.name}}
+                </small>
+            </ui-select-choices>
+        </ui-select>
+    </div>-->
+
+   
+
+
 
 
     <h3>UI View is Below</h3>
@@ -52,6 +66,8 @@
     <!--SCRIPTS-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.4/angular-sanitize.js'></script>
     <script src="dist/js/bundle.js"></script>
 </body>
 

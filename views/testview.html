@@ -5,9 +5,17 @@
 <ul>
     <li>Class: {{thisRecipe.class_name}}</li>
     <li><img src="{{thisRecipe.icon}}" alt=""></li>
-    <li ng-repeat='item in tree'><span ng-model="itemName">{{item.category_name}}:</span> <test-directive></test-directive> <span ng-model="itemConnected">{{item.connected}}</span> {{item.name}}  x{{item.quantity * qtyToMake}}</li>
-    
+    <li ng-repeat='item in tree'>
+        {{item.category_name}}: {{item.name}} x{{iQty = item.quantity * qtyToMake}}  <test-directive ng-if="isRecipe(item.connect_craftable)"></test-directive>
+    <span ng-init='iName = item.name'></span>
+    <span ng-init="iQty = item.quantity * qtyToMake"></span>
+    <span ng-init="recipeBool = isRecipe(item.connect_craftable)"></span>
+    <span ng-if="isRecipe(item.connect_craftable) == false" ng-init='raw(iName, iQty, sName, sQty, recipeBool)'></span>  
+    </li>
+    <!--ng-init='raw(iName, iQty)'-->
+    <!--ng-if="isRecipe(item.connect_craftable) == false" -->
+
 </ul>
-
-<button ng-click="isConnected(itemConnected, itemName)">TEST</button>
-
+<button ng-click='checkRawArr(rawMat)'>test rawArr</button>
+<button ng-click='combineMats(rawMat)'>test combineMats</button>
+{{rawMat}}
