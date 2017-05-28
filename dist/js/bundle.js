@@ -12,6 +12,8 @@ angular.module('noServer', ['ui.router', 'ui.select', 'ngSanitize']).config(func
 });
 'use strict';
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 angular.module('noServer').controller('changeMeController', function ($scope, changeMeService, $stateParams, recipeListService, singleRecipeService) {
     // hookup tests
     $scope.controllerTest = "changeMe controller is working";
@@ -49,77 +51,47 @@ angular.module('noServer').controller('changeMeController', function ($scope, ch
         return urltype > 0;
     };
 
-    //test to loop through object
-    $scope.foo = function (obj) {
-        if (obj === undefined || obj === null) {
-            return;
-        } else {
-            var array = [];
-            array.push(Object.keys(obj));
-            var bob = array.join("");
-            return $scope.mynewitem = 'item.synths[' + bob + '].tree';
-        }
-    };
-
     //add tier1 objects to raw material array
     var rawArr = [];
     $scope.rawMat = rawArr;
     $scope.raw = function (name, qty, sName, sQty, recipeBool) {
-        // console.log(`this is the name ${name}`)
-        // console.log(`this is the qty ${qty}`)
-        // console.log(`this is the sName ${sName}`)
-        // console.log(`this is the sQty ${sQty}`)
         if (recipeBool) {
-            // console.log(`yup true`)
-            rawArr.push({
-                sName: sName,
-                sqty: sQty
-            });
+            rawArr.push(_defineProperty({}, sName, sQty));
         } else {
-            rawArr.push({
-                iName: name,
-                iqty: qty
-            });
+            rawArr.push(_defineProperty({}, name, qty));
         }
 
         return rawArr; //of raw objects and their quantities
     };
 
     // combine duplicate mats
+    var shoppingListArr = [];
+    $scope.testy = shoppingListArr;
     $scope.combineMats = function (rawArr) {
-        //make all name say sName
-        for (var _i = 0; _i < rawArr.length; _i++) {
-            for (var key in rawArr[_i]) {
-                // console.log(`key is ${key}`)
-                if (key === 'iName') {
-                    // console.log(`this is the iName - ${key}`)
-                    rawArr[_i]['sName'] = rawArr[_i]['iName'];
-                    rawArr[_i]['sqty'] = rawArr[_i]['iqty'];
-                    delete rawArr[_i]['iName'];
-                    delete rawArr[_i]['iqty'];
-                }
-            }
-        }
-        //add duplicate names
         var a = rawArr;
         var ans = {};
-
         for (var i = 0; i < a.length; ++i) {
-            console.log(i);
-            console.log(a[i]);
             for (var obj in a[i]) {
-
                 ans[obj] = ans[obj] ? ans[obj] + a[i][obj] : a[i][obj];
             }
         }
-        console.log('this is a = ' + ans.sName + ' ' + ans.sqty);
-
-        // return rawMaterials
+        shoppingListArr.push(ans);
     };
 
-    //just to check the rawArr
-    $scope.checkRawArr = function (rawArr) {
-        console.log(rawArr);
+    //make the shoppinListArr into a Json blob
+    var jsonObject = [];
+    $scope.shoppingJson = jsonObject;
+    $scope.makeJson = function (arr, newKeyName, newValueQty) {
+        var obj = arr[0];
+        // console.log(obj)
+        for (var key in obj) {
+            var _jsonObject$push;
+
+            // console.log(key)
+            // console.log(obj[key])
+            jsonObject.push((_jsonObject$push = {}, _defineProperty(_jsonObject$push, newKeyName, key), _defineProperty(_jsonObject$push, newValueQty, obj[key]), _jsonObject$push));
+        }
+        // console.log(jsonObject)
     };
 });
 'use strict';

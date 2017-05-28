@@ -39,43 +39,21 @@ angular.module('noServer').controller('changeMeController', function ($scope, ch
         return urltype > 0
     }
 
-    //test to loop through object
-    $scope.foo = function (obj) {
-        if (obj === undefined || obj === null) {
-            return
-        }
-        else {
-            let array = []
-            array.push(Object.keys(obj))
-            var bob = array.join("")
-            return $scope.mynewitem = `item.synths[${bob}].tree`
-        }
-    }
-
-
-
     //add tier1 objects to raw material array
     var rawArr = []
     $scope.rawMat = rawArr
     $scope.raw = function (name, qty, sName, sQty, recipeBool) {
-        // console.log(`this is the name ${name}`)
-        // console.log(`this is the qty ${qty}`)
-        // console.log(`this is the sName ${sName}`)
-        // console.log(`this is the sQty ${sQty}`)
         if (recipeBool) {
-            // console.log(`yup true`)
             rawArr.push(
                 {
-                   sName: sName
-                    , sqty: sQty
+                    [sName]: sQty
                 }
             )
         }
         else {
             rawArr.push(
                 {
-                    iName: name
-                    , iqty: qty
+                    [name]: qty
                 }
             )
         }
@@ -84,45 +62,36 @@ angular.module('noServer').controller('changeMeController', function ($scope, ch
     }
 
     // combine duplicate mats
+    var shoppingListArr = []
+    $scope.testy = shoppingListArr
     $scope.combineMats = function (rawArr) {
-        //make all name say sName
-        for (let i = 0; i < rawArr.length; i++) {
-            for (let key in rawArr[i]) {
-                // console.log(`key is ${key}`)
-                if (key === 'iName') {
-                    // console.log(`this is the iName - ${key}`)
-                    rawArr[i]['sName'] = rawArr[i]['iName'];
-                    rawArr[i]['sqty'] = rawArr[i]['iqty'];
-                    delete rawArr[i]['iName'];
-                    delete rawArr[i]['iqty'];
+        let a = rawArr;
+        let ans = {};
+        for (let i = 0; i < a.length; ++i) {
+            for (let obj in a[i]) {
+                ans[obj] = ans[obj] ? ans[obj] + a[i][obj] : a[i][obj];
+            }
+        }
+        shoppingListArr.push(ans)
+    }
+
+    //make the shoppinListArr into a Json blob
+    var jsonObject = []
+    $scope.shoppingJson = jsonObject
+    $scope.makeJson = function (arr, newKeyName, newValueQty) {
+        let obj = arr[0]        
+        // console.log(obj)
+        for (let key in obj) {
+            // console.log(key)
+            // console.log(obj[key])
+            jsonObject.push(
+                {
+                    [newKeyName]: key
+                    , [newValueQty]: obj[key]
                 }
-            }
+            )
         }
-        //add duplicate names
-        var a = rawArr;
-        var ans = {};
-
-        for (var i = 0; i < a.length; ++i) {
-            console.log(i)
-            console.log(a[i])
-            for (var obj in a[i]) {
-        
-                    ans[obj] = ans[obj] ? ans[obj] + a[i][obj] : a[i][obj];
-                
-            }
-        }
-        console.log(`this is a = ${ans.sName} ${ans.sqty}`)
-
-        // return rawMaterials
+        // console.log(jsonObject)
     }
-
-
-    //just to check the rawArr
-    $scope.checkRawArr = function (rawArr) {
-        console.log(rawArr)
-    }
-
-
-
 
 })
