@@ -131,6 +131,7 @@ angular.module("noServer").directive("tests", function (changeMeService, recipeL
         templateUrl: "../../views/connectionTest.html"
     };
 });
+"use strict";
 'use strict';
 
 angular.module("noServer").directive('nestedRecipe', function (recipeListService, singleRecipeService) {
