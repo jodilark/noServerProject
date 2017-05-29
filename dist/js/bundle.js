@@ -131,7 +131,13 @@ angular.module("noServer").directive("tests", function (changeMeService, recipeL
         templateUrl: "../../views/connectionTest.html"
     };
 });
-"use strict";
+'use strict';
+
+angular.module("noServer").directive('nestedNestedRecipe', function (recipeListService, singleRecipeService) {
+    return {
+        templateUrl: '../../views/nestedNestedRecipe.html'
+    };
+});
 'use strict';
 
 angular.module("noServer").directive('nestedRecipe', function (recipeListService, singleRecipeService) {
@@ -153,6 +159,7 @@ angular.module("noServer").directive("strikeOut", function () {
         link: function link(scope, element, attribure) {
             element.on("click", function () {
                 element.css('text-decoration', 'line-through');
+                element.css('text-decoration-color', 'white');
             });
         }
     };
