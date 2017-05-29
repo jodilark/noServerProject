@@ -1,0 +1,12 @@
+<!--<h1>Shopping List</h1>
+<ul ng-repeat='grocery in shoppingJson'>
+    <li><span> {{grocery.name}} </span> <span> x{{grocery.qty}} </span></li>
+</ul>-->
+
+<div class='recipe-shopping-list-wrapper'>
+    <div class="recipe-shopping-list-title">Raw Materials Shopping List</div>
+    <div class="recipe-shopping-list-details-wrapper" strike-out ng-repeat='grocery in shoppingJson'>
+        <div class="recipe-list-item-qty">{{grocery.qty}}</div>
+        <div class="recipe-list-item-name">{{grocery.name}}</div>
+    </div>
+</div>

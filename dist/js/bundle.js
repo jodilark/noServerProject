@@ -6,13 +6,15 @@ angular.module('noServer', ['ui.router', 'ui.select', 'ngSanitize']).config(func
         templateUrl: './views/home.html',
         url: '/'
     }).state('recipe', {
-        templateUrl: './views/testview.html',
+        templateUrl: './views/selectedRecipe.html',
         url: '/recipe'
     });
 });
 'use strict';
 
-angular.module('noServer').controller('changeMeController', function ($scope, changeMeService, $stateParams, recipeListService, singleRecipeService) {
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+angular.module('noServer').controller('changeMeController', function ($scope, changeMeService, $stateParams, recipeListService, singleRecipeService, $interval) {
     // hookup tests
     $scope.controllerTest = "changeMe controller is working";
     $scope.serviceTest = changeMeService.serviceTest;
@@ -41,92 +43,125 @@ angular.module('noServer').controller('changeMeController', function ($scope, ch
             $scope.thisRecipe = response.data;
             $scope.tree = response.data.tree;
             console.log($scope.thisRecipe);
+            // console.log($scope.tree[0])
         });
     };
 
-    // show directive span if recipe has a url_type = 'recipe'
-    $scope.isRecipe = function (urltype) {
-        return urltype > 0;
-    };
+    //   item.synths['1'].tree  
 
-    //test to loop through object
-    $scope.foo = function (obj) {
-        if (obj === undefined || obj === null) {
-            return;
-        } else {
-            var array = [];
-            array.push(Object.keys(obj));
-            var bob = array.join("");
-            return $scope.mynewitem = 'item.synths[' + bob + '].tree';
+    // show directive span if recipe has a url_type = 'recipe'
+    $scope.isRecipe = function (urltype, obj) {
+        // console.log(`the obj is ${obj}`)
+        for (var key in obj) {
+            // console.log(`the key in the obj is ${key}`)
+            $scope.synthID = obj[key];
+            // console.log(`the new obj should be ${$scope.synthID} but is actually ${obj[key]}`)
+            break;
         }
+        return urltype > 0;
     };
 
     //add tier1 objects to raw material array
     var rawArr = [];
     $scope.rawMat = rawArr;
     $scope.raw = function (name, qty, sName, sQty, recipeBool) {
-        // console.log(`this is the name ${name}`)
-        // console.log(`this is the qty ${qty}`)
-        // console.log(`this is the sName ${sName}`)
-        // console.log(`this is the sQty ${sQty}`)
         if (recipeBool) {
-            // console.log(`yup true`)
-            rawArr.push({
-                sName: sName,
-                sqty: sQty
-            });
+            rawArr.push(_defineProperty({}, sName, sQty));
         } else {
-            rawArr.push({
-                iName: name,
-                iqty: qty
-            });
+            rawArr.push(_defineProperty({}, name, qty));
         }
 
         return rawArr; //of raw objects and their quantities
     };
 
     // combine duplicate mats
-    $scope.combineMats = function (rawArr) {
-        //make all name say sName
-        for (var _i = 0; _i < rawArr.length; _i++) {
-            for (var key in rawArr[_i]) {
-                // console.log(`key is ${key}`)
-                if (key === 'iName') {
-                    // console.log(`this is the iName - ${key}`)
-                    rawArr[_i]['sName'] = rawArr[_i]['iName'];
-                    rawArr[_i]['sqty'] = rawArr[_i]['iqty'];
-                    delete rawArr[_i]['iName'];
-                    delete rawArr[_i]['iqty'];
+    var shoppingListArr = [];
+    $scope.testy = shoppingListArr;
+    $scope.startInterval = function () {
+        $interval(function () {
+            $scope.combineMats = function (rawArr) {
+                var a = rawArr;
+                var ans = {};
+                for (var i = 0; i < a.length; ++i) {
+                    for (var obj in a[i]) {
+                        ans[obj] = ans[obj] ? ans[obj] + a[i][obj] : a[i][obj];
+                    }
                 }
-            }
-        }
-        //add duplicate names
-        var a = rawArr;
-        var ans = {};
-
-        for (var i = 0; i < a.length; ++i) {
-            console.log(i);
-            console.log(a[i]);
-            for (var obj in a[i]) {
-
-                ans[obj] = ans[obj] ? ans[obj] + a[i][obj] : a[i][obj];
-            }
-        }
-        console.log('this is a = ' + ans.sName + ' ' + ans.sqty);
-
-        // return rawMaterials
+                shoppingListArr.push(ans);
+            };
+            // console.log(rawArr)
+            $scope.combineMats(rawArr);
+        }, 500, 1);
     };
 
-    //just to check the rawArr
-    $scope.checkRawArr = function (rawArr) {
-        console.log(rawArr);
+    //make the shoppinListArr into a Json blob
+    var jsonObject = [];
+    $scope.shoppingJson = jsonObject;
+    $scope.startIntervalMakeJson = function () {
+        $interval(function () {
+            $scope.makeJson = function (arr, newKeyName, newValueQty) {
+                var obj = arr[0];
+                // console.log(obj)
+                for (var key in obj) {
+                    var _jsonObject$push;
+
+                    // console.log(key)
+                    // console.log(obj[key])
+                    jsonObject.push((_jsonObject$push = {}, _defineProperty(_jsonObject$push, newKeyName, key), _defineProperty(_jsonObject$push, newValueQty, obj[key]), _jsonObject$push));
+                }
+                // console.log(jsonObject)
+            };
+            // console.log(jsonObject)
+            $scope.makeJson(shoppingListArr, "name", "qty");
+        }, 1000, 1);
+    };
+
+    //Enable get recipe button
+    $scope.enabeGetRecipe = function (bool) {
+        return $scope.getRecipeButton = bool;
+    };
+
+    //get dynamic synths id
+
+});
+"use strict";
+
+angular.module("noServer").directive("tests", function (changeMeService, recipeListService, singleRecipeService) {
+    return {
+        templateUrl: "../../views/connectionTest.html"
     };
 });
 'use strict';
 
-angular.module("noServer").directive('testDirective', function (recipeListService, singleRecipeService) {
+angular.module("noServer").directive('nestedNestedRecipe', function (recipeListService, singleRecipeService) {
     return {
-        templateUrl: '../../views/testDirective.html'
+        templateUrl: '../../views/nestedNestedRecipe.html'
+    };
+});
+'use strict';
+
+angular.module("noServer").directive('nestedRecipe', function (recipeListService, singleRecipeService) {
+    return {
+        templateUrl: '../../views/nestedRecipe.html'
+    };
+});
+'use strict';
+
+angular.module("noServer").directive('shoppingList', function (recipeListService, singleRecipeService) {
+    return {
+        templateUrl: '../../views/shoppingList.html'
+    };
+});
+"use strict";
+
+angular.module("noServer").directive("strikeOut", function () {
+    return {
+        link: function link(scope, element, attribure) {
+            element.on("click", function () {
+                element.css('text-decoration', 'line-through');
+                element.css('text-decoration-color', 'white');
+            });
+        }
     };
 });
 'use strict';

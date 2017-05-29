@@ -1,24 +1,449 @@
+//ImportFiles
+@import 'varsMixins';
+
+//page SCSS
 .tests {
-    border: dotted 1px red;
-    background: rgba(0, 0, 0, .04);
-    color: rgba(0, 0, 0, .5);
+    @include testLook;
+}
+
+.home-image {
+    display: block;
+    height: 100vh;
+    background-image: url('../styles/imgs/Ffxiv-materia-epl-826_zps599a5ff8.jpg');
+    background-size: cover;
+    // background-image: no-repeat;
 }
 
 .second-view {
-    border: solid 3px blue;
+    display: block;
+    width: 100%;
     height: 100vh;
-
-}
+    overflow-y: scroll !important;
+    overflow-x: hidden;
+    background-image: url('../styles/imgs/repeatingBackground.png');
+    background-size: 300px;
+    background-repeat: true;
+} 
 
 .droplist {
-    height:400px;
-overflow-y: auto !important;
-display: block !important;
+    color: $primary-text-color;
+    background: #5e5e5e;    
 }
 
-.scrollable {
-    display: none;
+.headerInfo {
+    position: relative;
+    top: 0px;
+    width: 100%;
+}
+
+
+.index-nav-wrapper {
+	background-color: royalblue; /*for compatibility with older browsers*/
+	background-image: linear-gradient(#02002d,black);
+    box-shadow: 0px 1px 4px -2px #333;
+    @include flexRow;
+    height: 3em;
+    font-family: 'Final Fantasy';
+    font-size: 18px;
+    padding: 5px 10px;
+    color: #F4F4F4;
+}
+
+a:link, a:visited, a:hover, a:active {
+    @include remove-decorations;
+   
+}
+
+div {
+    // @include test-view;
+}
+
+.index-header-text {
+    margin: 0px 20px 0px 0px;
+}
+
+.index-form-wrapper {
+    width: 100%;
+    background-image: url('../styles/imgs/repeatHeader.png');
+    background-size: cover;
+    background-repeat: true;
+}
+
+
+.qty-to-make-input {
+    width: 50px;
+}
+
+.recipe-input {
+    width: 100%;
+    margin: 0 10px 0 0;
+    background: #5e5e5e;
+    color: $primary-text-color;
+    border-radius: 3px;
+    height: 30px;
+}
+
+#selectRecipe {
+    color: $primary-text-color !important;
+    @include font-style-1;
+    background: #5e5e5e;
+    border-radius: 3px;
+    height: 30px;
+}
+
+
+.recipeDiv {
+    width:100%;
+    color: $primary-text-color;
+    text-shadow: 0px 0px 1px black;
+    @include font-style-1;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    margin: 0px;
+}
+
+.qtydiv {
+    display: inline-block;
+    width: auto;
+    color: $primary-text-color;
+    text-shadow: 0px 0px 1px black;
+    @include font-style-1;
+}
+
+.rowFlex {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 10px;
+}
+
+.button-wrapper {
+    display: block;
+    width: 100%;
+    height: 40px;
+}
+
+.getRecipeButton {
+    height: 100%;
+    width: 100%;
+    @include footer-button;
+    @include background-footer-gradient;
+    @include font-style-3;
+}
+
+.index-footer-wrapper {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+//RecipePage Styles
+//RecipeDetails
+.recipe-recipe-page-wrapper {
+    // overflow-y: scroll;
+}
+
+.recipe-recipe-details-wrapper {
+    width: 100%;
+}
+
+.recipe-details-title {
+    line-height: 20px;
+    width: 100%;
+    // background: $transparent;
+    padding: 10px;
+    border-bottom: 1px solid #000;
+    box-shadow: $bottom-emboss;
+    color: $primary-text-color;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.recipe-details-job {
+    line-height: 20px;
+    // width: 100%;
+    padding-left: 10px;
+    margin: 10px;
+    @include background-gradient;  
+    color: #222;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px 2px;  
+    font-family: $primary-font;
+    font-weight: bold;
+}   
+
+.recipe-details-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center; 
+    width: 100%;
+    height: 80px;
+    padding: 10px 0px;
+    
+}
+
+.recipe-icon-container {
+    @include center-content;
+    margin: 0px 0px 0px 10px;
+    width: 50px;
+}
+
+.recipe-image {
     height: 50px;
-    overflow-y: 50px;
+    width: 50px;
+    border-radius: 5px;
+    box-shadow: 1px 0px 1px 2px;
 }
 
+
+.recipe-description-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 8px;
+    background: $transparent;
+}
+
+.recipe-recipe-name {
+    color: $primary-text-color;
+    line-height: 20px;
+    text-shadow: 0px 0px 1px black;
+    @include font-style-1;
+}
+
+.recipe-recipe-level {
+    color: $tertiary-text-color;
+    line-height: 20px;
+    text-shadow: 0px 0px 1px black;
+    @include font-style-1;
+    font-size: 13px;
+}
+
+#recipe-qty-contianer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    margin: 0px 10px 0px 0px;
+    background: $transparent;
+}
+
+.recipe-qty {
+    background: $transparent;
+    width: 100px;
+    line-height: 40px;
+    text-align: right;
+    color: $primary-text-color;
+    @include font-style-4;
+}   
+
+.just-a-line {
+    height: 3px;
+    margin: 0px 10px;
+    border-top: 1px inset #4f514f;
+    @include background-line-gradient;
+}
+
+
+//RecipematsList
+.recipe-materials-list-wrapper{
+    width: 100%;
+}
+
+.recipe-materials-title {
+    line-height: 20px;
+    width: 100%;
+    color: $secondary-text-color;
+    text-shadow: 0px 0px 1px black;
+    padding: 5px 10px 0px; 
+    @include font-style-1;
+}
+
+.recipe-materials-details-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    background: $transparent;
+}
+
+.recipe-materials-qty {
+    line-height: 35px;
+    display: inline;
+    text-align: right;
+    margin-left: 10px;
+    color: $primary-text-color;
+    @include font-style-4;
+}
+
+.recipe-materials-icon {
+    border: 2px inset #555;
+    border-radius: 5px;
+    margin-left: 10px;
+    @include background-line-gradient;
+}
+
+.mat-image {
+    height: 40px;
+    width: 40px;
+}
+
+.recipe-materials-name {
+    width: 100%;
+    line-height: 35px;
+    margin-left: 15px;
+    padding-left: 10px;
+    border-left: 1px solid #807e80;
+    color: $secondary-text-color;
+    text-shadow: 0px 0px 1px black;
+    @include font-style-2;
+}
+
+//subRecipies
+
+.sub-recipe-materials-details-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    background: $transparent;
+}
+
+.sub-recipe-materials-qty {
+    line-height: 15px;
+    display: inline;
+    // width: 50px;
+    text-align: right;
+    // margin-left: 10px;
+    // margin-right: 23px;
+    color: $primary-text-color;
+    @include font-style-4;
+    font-size: 14px;
+}
+
+.sub-recipe-materials-icon {
+    border: 2px inset #555;
+    // padding: 3px;
+    border-radius: 5px;
+    margin-left: 10px;
+    @include background-line-gradient;
+}
+
+.sub-mat-image {
+    height: 20px;
+    width: 20px;
+}
+
+
+.sub-recipe-materials-name {
+    width: 100%;
+    line-height: 15px;
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid #807e80;
+    color: $secondary-text-color;
+    text-shadow: 0px 0px 1px black;
+    @include font-style-2;
+}
+
+//shoppingList
+.recipe-shopping-list-wrapper {
+    border: 2px inset #333;
+    height: 1000px;
+    margin: 10px 0px 50px;
+    background: rgba(0, 0, 0, .2);
+    border-radius:  5px;
+}
+
+
+.recipe-shopping-list-title {
+    line-height: 20px;
+    width: 100%;
+    background: #6c5c46;
+    border: 2px inset rgba(0, 0, 0, .2);
+    color: $primary-text-color;
+    text-shadow: 0px 0px 1px black;
+    padding: 5px 10px;
+    @include font-style-1; 
+}
+
+.recipe-shopping-list-details-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background: $transparent;
+}
+
+.recipe-list-item-qty {
+    line-height: 35px;
+    display: inline;
+    text-align: right;
+    margin-left: 20px;
+    margin-right: 15px;
+    color: $primary-text-color;
+    @include font-style-4;
+}
+
+.recipe-list-item-name {
+    width: 100%;
+    line-height: 35px;
+    margin-left: 100px;
+    padding-left: 10px;
+    margin: 3px 0px;
+    border-left: 1px solid #807e80;
+    color: $secondary-text-color;
+    @include font-style-2;
+}
+
+
+.footer-object-wrapper {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-top: 1px solid $transparent;
+}
+
+.footer-object-wiki {
+    @include footer-button;
+    @include background-footer-gradient;
+    @include font-style-3;
+}
+
+.footer-object-clock {
+    @include footer-button;
+    @include background-footer-gradient;
+    @include font-style-3;
+}
+
+.footer-object-crafthelper {
+    @include footer-button;
+    @include background-footer-gradient;
+    @include font-style-3;
+}
+
+@media(max-width: 640px){
+.home-image {
+    display: block;
+    height: 100vh;
+    background-image: url('../styles/imgs/Ffxiv-materia-epl-826_zps599a5ff8.jpg');
+    background-size: auto;
+    // background-image: no-repeat;
+}
+}

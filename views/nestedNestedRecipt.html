@@ -1,0 +1,21 @@
+<!--<ul ng-repeat="sub in item.synths[1].tree" >
+    <li>... {{sub.category_name}}: {{sub.name}}  x{{combinedQty = sub.quantity * iQty}}</li>
+    <span ng-init='sName = sub.name'></span> <span ng-init="sQty = sub.quantity * iQty"><span  ng-init='raw(iName, iQty, sName, sQty, recipeBool)'></span>
+</ul>
+</li>-->
+
+
+<div class="sub-recipe-materials-details-wrapper" ng-repeat='tub in synthID.tree'>
+    <div class="sub-recipe-materials-qty">{{combinedQty = tub.quantity * iQty}}</div>
+    <div class="sub-recipe-materials-icon"><img src="{{tub.icon}}" class="sub-mat-image"></div>
+    <div class="sub-recipe-materials-name">{{tub.name}}</div>
+    <p>
+        <nested-recipe ng-if="isRecipe(tub.connect_craftable, tub.synths)"></nested-recipe>
+        <span ng-init='iName = tub.name'></span>
+        <span ng-init="iQty = tub.quantity * qtyToMake"></span>
+        <span ng-init="recipeBool = isRecipe(tub.connect_craftable)"></span>
+        <span ng-if="isRecipe(tub.connect_craftable) == false" ng-init='raw(iName, iQty, sName, sQty, recipeBool)'></span>
+    </p>
+    <span ng-init='sName = tub.name'></span> <span ng-init="sQty = tub.quantity * iQty"><span  ng-init='raw(iName, iQty, sName, sQty, recipeBool)'></span>
+</div>
+<br/>

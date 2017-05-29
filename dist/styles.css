@@ -19,7 +19,8 @@ time, mark, audio, video {
   background: transparent; }
 
 body {
-  line-height: 1; }
+  line-height: 1;
+  overflow: hidden; }
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -82,23 +83,533 @@ input, select {
 *, *:before, *:after {
   box-sizing: border-box; }
 
+@import url("https://fonts.googleapis.com/css?family=Oswald");
+@font-face {
+  font-family: 'Final Fantasy';
+  src: url("New.eot");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Final Fantasy';
+  src: url(data:application/font-woff;charset=utf-8;base64,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) format("woff"), url("New.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
 .tests {
+  position: relative;
   border: dotted 1px red;
   background: rgba(0, 0, 0, 0.04);
   color: rgba(0, 0, 0, 0.5); }
 
+.home-image {
+  display: block;
+  height: 100vh;
+  background-image: url("../styles/imgs/Ffxiv-materia-epl-826_zps599a5ff8.jpg");
+  background-size: cover; }
+
 .second-view {
-  border: solid 3px blue;
-  height: 100vh; }
+  display: block;
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll !important;
+  overflow-x: hidden;
+  background-image: url("../styles/imgs/repeatingBackground.png");
+  background-size: 300px;
+  background-repeat: true; }
 
 .droplist {
-  height: 400px;
-  overflow-y: auto !important;
-  display: block !important; }
+  color: #d6d6d6;
+  background: #5e5e5e; }
 
-.scrollable {
-  display: none;
+.headerInfo {
+  position: relative;
+  top: 0px;
+  width: 100%; }
+
+.index-nav-wrapper {
+  background-color: royalblue;
+  /*for compatibility with older browsers*/
+  background-image: linear-gradient(#02002d, black);
+  box-shadow: 0px 1px 4px -2px #333;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 3em;
+  font-family: 'Final Fantasy';
+  font-size: 18px;
+  padding: 5px 10px;
+  color: #F4F4F4; }
+
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+  text-decoration-line: none;
+  text-decoration-style: none;
+  color: inherit;
+  cursor: pointer;
+  font-family: inherit; }
+
+.index-header-text {
+  margin: 0px 20px 0px 0px; }
+
+.index-form-wrapper {
+  width: 100%;
+  background-image: url("../styles/imgs/repeatHeader.png");
+  background-size: cover;
+  background-repeat: true; }
+
+.qty-to-make-input {
+  width: 50px; }
+
+.recipe-input {
+  width: 100%;
+  margin: 0 10px 0 0;
+  background: #5e5e5e;
+  color: #d6d6d6;
+  border-radius: 3px;
+  height: 30px; }
+
+#selectRecipe {
+  color: #d6d6d6 !important;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  background: #5e5e5e;
+  border-radius: 3px;
+  height: 30px; }
+
+.recipeDiv {
+  width: 100%;
+  color: #d6d6d6;
+  text-shadow: 0px 0px 1px black;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  font-size: 15px; }
+
+.input-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  margin: 0px; }
+
+.qtydiv {
+  display: inline-block;
+  width: auto;
+  color: #d6d6d6;
+  text-shadow: 0px 0px 1px black;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  font-size: 15px; }
+
+.rowFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 10px; }
+
+.button-wrapper {
+  display: block;
+  width: 100%;
+  height: 40px; }
+
+.getRecipeButton {
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  line-height: 30px;
+  border-left: 1px solid #d6d6d6;
+  border-right: 1px solid #a6a6a6;
+  color: #d6d6d6;
+  text-shadow: 0px 0px 1px black;
+  box-shadow: 1px 0px 1px 2px;
+  text-align: center;
+  background: #efc986;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#917d52, #efc986);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#917d52, #efc986);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#917d52, #efc986);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#917d52, #efc986);
+  /* Standard syntax */
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  font-size: 18px; }
+
+.index-footer-wrapper {
+  position: fixed;
+  bottom: 0px;
+  width: 100%; }
+
+.recipe-recipe-details-wrapper {
+  width: 100%; }
+
+.recipe-details-title {
+  line-height: 20px;
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid #000;
+  box-shadow: 1px 0px 1px #f4f4f4;
+  color: #d6d6d6;
+  font-family: 'Oswald', sans-serif;
+  font-weight: bold;
+  font-size: 17px; }
+
+.recipe-details-job {
+  line-height: 20px;
+  padding-left: 10px;
+  margin: 10px;
+  background: #8c8782;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #8c8782, #6a635b);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #8c8782, #6a635b);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #8c8782, #6a635b);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #8c8782, #6a635b);
+  /* Standard syntax */
+  color: #222;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px 2px;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold; }
+
+.recipe-details-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center;
+  width: 100%;
+  height: 80px;
+  padding: 10px 0px; }
+
+.recipe-icon-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 0px 0px 10px;
+  width: 50px; }
+
+.recipe-image {
   height: 50px;
-  overflow-y: 50px; }
+  width: 50px;
+  border-radius: 5px;
+  box-shadow: 1px 0px 1px 2px; }
+
+.recipe-description-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.02); }
+
+.recipe-recipe-name {
+  color: #d6d6d6;
+  line-height: 20px;
+  text-shadow: 0px 0px 1px black;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  font-size: 15px; }
+
+.recipe-recipe-level {
+  color: #888670;
+  line-height: 20px;
+  text-shadow: 0px 0px 1px black;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  font-size: 13px; }
+
+#recipe-qty-contianer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: 0px 10px 0px 0px;
+  background: rgba(0, 0, 0, 0.02); }
+
+.recipe-qty {
+  background: rgba(0, 0, 0, 0.02);
+  width: 100px;
+  line-height: 40px;
+  text-align: right;
+  color: #d6d6d6;
+  font-family: "Oswald", sans-serif;
+  font-size: 25px;
+  transform: scale(2, 1);
+  -webkit-transform: scale(2, 1); }
+
+.just-a-line {
+  height: 3px;
+  margin: 0px 10px;
+  border-top: 1px inset #4f514f;
+  background: #807e80;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#4f514f, #807e80, #4f514f);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#4f514f, #807e80, #4f514f);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#4f514f, #807e80, #4f514f);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#4f514f, #807e80, #4f514f);
+  /* Standard syntax */ }
+
+.recipe-materials-list-wrapper {
+  width: 100%; }
+
+.recipe-materials-title {
+  line-height: 20px;
+  width: 100%;
+  color: #807e80;
+  text-shadow: 0px 0px 1px black;
+  padding: 5px 10px 0px;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  font-size: 15px; }
+
+.recipe-materials-details-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.02); }
+
+.recipe-materials-qty {
+  line-height: 35px;
+  display: inline;
+  text-align: right;
+  margin-left: 10px;
+  color: #d6d6d6;
+  font-family: "Oswald", sans-serif;
+  font-size: 25px;
+  transform: scale(2, 1);
+  -webkit-transform: scale(2, 1); }
+
+.recipe-materials-icon {
+  border: 2px inset #555;
+  border-radius: 5px;
+  margin-left: 10px;
+  background: #807e80;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#4f514f, #807e80, #4f514f);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#4f514f, #807e80, #4f514f);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#4f514f, #807e80, #4f514f);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#4f514f, #807e80, #4f514f);
+  /* Standard syntax */ }
+
+.mat-image {
+  height: 40px;
+  width: 40px; }
+
+.recipe-materials-name {
+  width: 100%;
+  line-height: 35px;
+  margin-left: 15px;
+  padding-left: 10px;
+  border-left: 1px solid #807e80;
+  color: #807e80;
+  text-shadow: 0px 0px 1px black;
+  font-family: "Oswald", sans-serif;
+  font-weight: regular;
+  font-size: 16px; }
+
+.sub-recipe-materials-details-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.02); }
+
+.sub-recipe-materials-qty {
+  line-height: 15px;
+  display: inline;
+  text-align: right;
+  color: #d6d6d6;
+  font-family: "Oswald", sans-serif;
+  font-size: 25px;
+  transform: scale(2, 1);
+  -webkit-transform: scale(2, 1);
+  font-size: 14px; }
+
+.sub-recipe-materials-icon {
+  border: 2px inset #555;
+  border-radius: 5px;
+  margin-left: 10px;
+  background: #807e80;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#4f514f, #807e80, #4f514f);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#4f514f, #807e80, #4f514f);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#4f514f, #807e80, #4f514f);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#4f514f, #807e80, #4f514f);
+  /* Standard syntax */ }
+
+.sub-mat-image {
+  height: 20px;
+  width: 20px; }
+
+.sub-recipe-materials-name {
+  width: 100%;
+  line-height: 15px;
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid #807e80;
+  color: #807e80;
+  text-shadow: 0px 0px 1px black;
+  font-family: "Oswald", sans-serif;
+  font-weight: regular;
+  font-size: 16px; }
+
+.recipe-shopping-list-wrapper {
+  border: 2px inset #333;
+  height: 1000px;
+  margin: 10px 0px 50px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px; }
+
+.recipe-shopping-list-title {
+  line-height: 20px;
+  width: 100%;
+  background: #6c5c46;
+  border: 2px inset rgba(0, 0, 0, 0.2);
+  color: #d6d6d6;
+  text-shadow: 0px 0px 1px black;
+  padding: 5px 10px;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  font-size: 15px; }
+
+.recipe-shopping-list-details-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.02); }
+
+.recipe-list-item-qty {
+  line-height: 35px;
+  display: inline;
+  text-align: right;
+  margin-left: 20px;
+  margin-right: 15px;
+  color: #d6d6d6;
+  font-family: "Oswald", sans-serif;
+  font-size: 25px;
+  transform: scale(2, 1);
+  -webkit-transform: scale(2, 1); }
+
+.recipe-list-item-name {
+  width: 100%;
+  line-height: 35px;
+  margin-left: 100px;
+  padding-left: 10px;
+  margin: 3px 0px;
+  border-left: 1px solid #807e80;
+  color: #807e80;
+  font-family: "Oswald", sans-serif;
+  font-weight: regular;
+  font-size: 16px; }
+
+.footer-object-wrapper {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.02); }
+
+.footer-object-wiki {
+  flex: 1;
+  line-height: 30px;
+  border-left: 1px solid #d6d6d6;
+  border-right: 1px solid #a6a6a6;
+  color: #d6d6d6;
+  text-shadow: 0px 0px 1px black;
+  box-shadow: 1px 0px 1px 2px;
+  text-align: center;
+  background: #efc986;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#917d52, #efc986);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#917d52, #efc986);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#917d52, #efc986);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#917d52, #efc986);
+  /* Standard syntax */
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  font-size: 18px; }
+
+.footer-object-clock {
+  flex: 1;
+  line-height: 30px;
+  border-left: 1px solid #d6d6d6;
+  border-right: 1px solid #a6a6a6;
+  color: #d6d6d6;
+  text-shadow: 0px 0px 1px black;
+  box-shadow: 1px 0px 1px 2px;
+  text-align: center;
+  background: #efc986;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#917d52, #efc986);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#917d52, #efc986);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#917d52, #efc986);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#917d52, #efc986);
+  /* Standard syntax */
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  font-size: 18px; }
+
+.footer-object-crafthelper {
+  flex: 1;
+  line-height: 30px;
+  border-left: 1px solid #d6d6d6;
+  border-right: 1px solid #a6a6a6;
+  color: #d6d6d6;
+  text-shadow: 0px 0px 1px black;
+  box-shadow: 1px 0px 1px 2px;
+  text-align: center;
+  background: #efc986;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#917d52, #efc986);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#917d52, #efc986);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#917d52, #efc986);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#917d52, #efc986);
+  /* Standard syntax */
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  font-size: 18px; }
+
+@media (max-width: 640px) {
+  .home-image {
+    display: block;
+    height: 100vh;
+    background-image: url("../styles/imgs/Ffxiv-materia-epl-826_zps599a5ff8.jpg");
+    background-size: auto; } }
 
 /*# sourceMappingURL=maps/styles.css.map */

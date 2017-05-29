@@ -7,60 +7,63 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shopping List</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
-    <link rel="stylesheet" href="/dist/styles.8416ce84.css">
+    <link rel="stylesheet" href="/dist/styles.65504a9d.css">
 </head>
 
 <body ng-controller="changeMeController">
+    <!--<tests></tests>-->
+    <div class='headerInfo'>
+        <div class="index-nav-wrapper">
+            <p>
+                <a ui-sref="home" ng-click='enabeGetRecipe(false)'>
+                    <div class="index-header-text">FINAL FANTASY XIV</div>
+                    <div class="index-header-text">SHOPPING LIST</div>
+                </a>
+            </p>
+        </div>
 
-    <div class="tests">
-        <!--TESTS-->
-        <li> {{controllerTest}} </li>
-        <li> {{serviceTest}} </li>
-        <li> {{recipeListServiceTest}} </li>
-        <li> {{singleRecipeServiceTest}} </li>
-        <br/>
-        <p> Hello World </p>
+
+        <div class="index-form-wrapper">
+            <form>
+                <div class='input-wrapper'>
+                    <div class='rowFlex'>
+                        <div class='recipeDiv'>
+                            <p>Recipes</p>
+                            <input list="selectRecipe" class='recipe-input' name="selectRecipe" placeholder="Enter or choose a recipe" ng-model="selectedRecipe"
+                                ng-click='enabeGetRecipe(true)'>
+                            <datalist id="selectRecipe">
+                                <option ng-repeat="recipe in recipeCard" class="droplist">{{recipe.id}} {{recipe.name}}</option>
+                            </datalist>
+                        </div>
+                        <div class='qtydiv'>
+                            <p>Qty</p>
+                            <input type="number" placeholder="qty" id="selectRecipe" class='qty-to-make-input' ng-model="qtyToMake">
+                        </div>
+                    </div>
+                </div>
+                <div class='button-wrapper'>
+                    <input type="submit" value="Get Recipe" class='getRecipeButton' ui-sref="recipe" ng-disabled="getRecipeButton != true" ng-model='getRecipeButton'
+                        ng-click="id(selectedRecipe); startInterval(); startIntervalMakeJson()">
+                </div>
+            </form>
+        </div>
     </div>
-    <button ui-sref="home">Home</button>
 
-    <!--<form action="" method="get"> <form ng-submit="onFormSubmission($event)"> -->
-    <form>
-        <input list="selectRecipe" class="scrollable" name="selectRecipe" placeholder="Enter or choose a recipe" ng-model="selectedRecipe">
-        <datalist id="selectRecipe">
-            <option ng-repeat="recipe in recipeCard" class="droplist">{{recipe.id}} {{recipe.name}}</option>
-        </datalist>
-        <input type="number" placeholder="qty" id="selectRecipe" ng-model="qtyToMake">
-        <input type="submit" value="Get Recipe" ui-sref="recipe" ng-click="id(selectedRecipe)">
-    </form>
-
-
-    <!--<div>
-        <ui-select ng-model="selectedRecipe" style="min-width: 300px;" title="Choose a recipe">
-            <ui-select-match>{{$select.selected.name}}</ui-select-match>
-            <ui-select-choices repeat="recipe in recipeCard | filter: $select.search">
-                <small>
-                    {{recipe.id}} {{recipe.name}}
-                </small>
-            </ui-select-choices>
-        </ui-select>
-    </div>-->
-
-   
-
-
-
-
-    <h3>UI View is Below</h3>
-    <div class="second-view">
-        <!--selected recipe-->
+    
 
         <ui-view></ui-view>
     </div>
+    </div>
+    </div>
 
-
-    <!--put footer directive here-->
-
-
+    <div class="index-footer-wrapper">
+        <div class="footer-object-wrapper">
+            <div class="footer-object-wiki"><a href="https://ffxiv.gamerescape.com/wiki/Main_Page" target="_blank" alt=''>Wiki</a></div>
+            <div class="footer-object-clock"><a href="http://www.ffxivclock.com/#/" target="_blank" alt=''>Clock</a></div>
+            <div class="footer-object-crafthelper"><a href="http://ffxiv-beta.lokyst.net/" target="_blank" alt=''>Craft Helper</a></div>
+        </div>
+    </div>
+    </div>
 
 
     <!--SCRIPTS-->
