@@ -7,10 +7,9 @@ angular.module('noServer', ['ui.router', 'ui.select', 'ngSanitize'])
                 url: '/'                
             })
             .state('recipe', {
-                templateUrl: './views/testview.html',
+                templateUrl: './views/selectedRecipe.html',
                 url: '/recipe',    
             })
             
-
 
     })

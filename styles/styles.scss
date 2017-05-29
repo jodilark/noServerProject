@@ -1,12 +1,271 @@
+//ImportFiles
+@import 'varsMixins';
+
+//page SCSS
 .tests {
-    border: dotted 1px red;
-    background: rgba(0, 0, 0, .04);
-    color: rgba(0, 0, 0, .5);
+    @include testLook;
 }
 
 .second-view {
     border: solid 3px blue;
-    height: 100vh;
+    height: 600px;
+    overflow-y: scroll !important;
+} 
 
+.headerInfo {
+    position: relative;
+    top: 0px;
+    width: 100%;
 }
+
+
+.index-nav-wrapper {
+    @include test-view;
+    background: black;
+    @include flexRow;
+    height: 3em;
+    font-family: 'Final Fantasy';
+    font-size: 18px;
+    padding: 10px;
+    color: #F4F4F4;
+}
+
+a:link, a:visited, a:hover, a:active {
+    @include remove-decorations;
+   
+}
+
+div {
+    @include test-view;
+}
+
+.index-header-text {
+    margin: 0px 20px 0px 0px;
+}
+
+.index-form-wrapper {
+    width: 100%;
+    @include test-view;
+}
+
+
+.qty-to-make-input {
+    width: 50px;
+}
+
+.recipe-input {
+    width: 100%;
+    margin: 0 10px 0 0;
+}
+
+.recipeDiv {
+    width:100%;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    margin: 0px;
+}
+
+.qtydiv {
+    display: inline-block;
+    width: auto;
+}
+
+.rowFlex {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 10px;
+}
+
+.button-wrapper {
+    display: block;
+    width: 100%;
+    height: 40px;
+}
+
+.getRecipeButton {
+    height: 100%;
+    width: 100%;
+    @include button-style;
+}
+
+.index-footer-wrapper {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 40px;
+    background: brown;
+}
+
+//RecipePage Styles
+//RecipeDetails
+.recipe-recipe-page-wrapper {
+    overflow-y: scroll;
+}
+
+.recipe-recipe-details-wrapper {
+    width: 100%;
+}
+
+.recipe-details-title {
+    line-height: 20px;
+    width: 100%;
+    background: pink;
+    padding: 10px;
+}
+
+.recipe-details-job {
+    line-height: 20px;
+    width: 100%;
+    background: purple;
+    padding: 5px 10px;    
+}   
+
+.recipe-details-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center; 
+    width: 100%;
+    height: 80px;
+    background: green;
+    padding: 10px 0px;
+    
+}
+
+.recipe-icon-container {
+    @include center-content;
+    margin: 0px 0px 0px 10px;
+    width: 50px;
+    background: blue;
+}
+
+.recipe-image {
+    height: 50px;
+    width: 50px;
+}
+
+.recipe-description-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 3px;
+    background: maroon;
+}
+
+.recipe-recipe-name {
+    background: purple;
+    line-height: 20px;
+}
+
+.recipe-recipe-level {
+    background: royalblue;
+    line-height: 20px;
+}
+
+#recipe-qty-contianer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    margin: 0px 10px 0px 0px;
+    background: orange;
+}
+
+.recipe-qty {
+    background: yellow;
+    width: 100px;
+    line-height: 40px;
+    text-align: right;
+}   
+
+
+//RecipematsList
+.recipe-materials-list-wrapper{
+    width: 100%;
+}
+
+.recipe-materials-title {
+    line-height: 20px;
+    width: 100%;
+    background: purple;
+    padding: 5px 10px; 
+}
+
+.recipe-materials-details-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    background: blue;
+}
+
+.recipe-materials-qty {
+    line-height: 35px;
+    width: 50px;
+    text-align: right;
+    margin-right: 5px;
+}
+
+.mat-image {
+    height: 40px;
+    width: 40px;
+}
+
+.recipe-materials-name {
+    width: 100%;
+    line-height: 35px;
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid white;
+}
+
+
+//shoppingList
+.recipe-shopping-list-wrapper {
+    width: 100%;
+}
+
+.recipe-shopping-list-title {
+    line-height: 20px;
+    width: 100%;
+    background: purple;
+    padding: 5px 10px; 
+}
+
+.recipe-shopping-list-details-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background: yellow;
+}
+
+.recipe-list-item-qty {
+    line-height: 335px;
+    width: 50px;
+    text-align: right;
+    margin-right: 5px;
+}
+
+.recipe-list-item-name {
+    width: 100%;
+    line-height: 35px;
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid white;
+}
+
+
 

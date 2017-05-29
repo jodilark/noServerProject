@@ -6,7 +6,7 @@ angular.module('noServer', ['ui.router', 'ui.select', 'ngSanitize']).config(func
         templateUrl: './views/home.html',
         url: '/'
     }).state('recipe', {
-        templateUrl: './views/testview.html',
+        templateUrl: './views/selectedRecipe.html',
         url: '/recipe'
     });
 });
@@ -93,12 +93,42 @@ angular.module('noServer').controller('changeMeController', function ($scope, ch
         }
         // console.log(jsonObject)
     };
+
+    //Enable get recipe button
+    $scope.enabeGetRecipe = function (bool) {
+        return $scope.getRecipeButton = bool;
+    };
+});
+"use strict";
+
+angular.module("noServer").directive("tests", function (changeMeService, recipeListService, singleRecipeService) {
+    return {
+        templateUrl: "../../views/connectionTest.html"
+    };
 });
 'use strict';
 
-angular.module("noServer").directive('testDirective', function (recipeListService, singleRecipeService) {
+angular.module("noServer").directive('nestedRecipe', function (recipeListService, singleRecipeService) {
     return {
-        templateUrl: '../../views/testDirective.html'
+        templateUrl: '../../views/nestedRecipe.html'
+    };
+});
+'use strict';
+
+angular.module("noServer").directive('shoppingList', function (recipeListService, singleRecipeService) {
+    return {
+        templateUrl: '../../views/shoppingList.html'
+    };
+});
+"use strict";
+
+angular.module("noServer").directive("strikeOut", function () {
+    return {
+        link: function link(scope, element, attribure) {
+            element.on("click", function () {
+                element.css('text-decoration', 'line-through');
+            });
+        }
     };
 });
 'use strict';

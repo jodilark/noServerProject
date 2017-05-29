@@ -1,0 +1,56 @@
+<!--<h2>Recipe</h2>
+<p>Quantity to make:{{qtyToMake}}</p>
+
+{{thisRecipe.name}}
+<ul>
+    <li>Class: {{thisRecipe.class_name}}</li>
+    <li><img src="{{thisRecipe.icon}}" alt=""></li>
+    <li ng-repeat='item in tree'>
+        {{item.category_name}}: {{item.name}} x{{iQty = item.quantity * qtyToMake}}
+        <nested-recipe ng-if="isRecipe(item.connect_craftable)"></nested-recipe>
+        <span ng-init='iName = item.name'></span>
+        <span ng-init="iQty = item.quantity * qtyToMake"></span>
+        <span ng-init="recipeBool = isRecipe(item.connect_craftable)"></span>
+        <span ng-if="isRecipe(item.connect_craftable) == false" ng-init='raw(iName, iQty, sName, sQty, recipeBool)'></span>
+    </li>
+</ul>
+
+<div>
+    <br/>
+    <br/>
+    <br/>
+    <shopping-list></shopping-list>
+</div>-->
+
+<!--real layout below-->
+<div class='recipe-recipe-page-wrapper'>
+    <div class='recipe-recipe-details-wrapper'>
+        <div class='recipe-details-title'>Recipe</div>
+        <div class='recipe-details-job'>Blacksmith</div>
+        <div class='recipe-details-wrapper'>
+            <div class='recipe-icon-container'><img src="../styles/imgs/amateurFile.png" class="recipe-image"></div>
+            <div class='recipe-description-container'>
+                <div class="recipe-recipe-name">Amateur's File</div>
+                <div class="recipe-recipe-level">Lv.2</div>
+            </div>
+            <div id='recipe-qty-contianer'>f
+                <div class="recipe-qty">1</div>
+            </div>
+        </div>
+    </div>
+    <div class='recipe-materials-list-wrapper'>
+        <div class="recipe-materials-title">Materials</div>
+        <div class="recipe-materials-details-wrapper">
+            <div class="recipe-materials-qty">3</div>
+            <div class="recipe-materials-icon"><img src="../styles/imgs/amateurFile.png" class="mat-image"></div>
+            <div class="recipe-materials-name">Bronse Ingot</div>
+        </div>
+    </div>
+    <div class='recipe-shopping-list-wrapper'>
+        <div class="recipe-shopping-list-title">Raw Materials Shopping List</div>
+        <div class="recipe-shopping-list-details-wrapper" strike-out>
+            <div class="recipe-list-item-qty">5</div>
+            <div class="recipe-list-item-name">Fire Shards</div>
+        </div>
+    </div>
+</div>

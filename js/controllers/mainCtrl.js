@@ -94,4 +94,12 @@ angular.module('noServer').controller('changeMeController', function ($scope, ch
         // console.log(jsonObject)
     }
 
+//Enable get recipe button
+$scope.enabeGetRecipe = function(bool){
+    return $scope.getRecipeButton = bool
+}
+
+
+
+
 })
