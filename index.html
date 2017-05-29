@@ -43,14 +43,13 @@
                 </div>
                 <div class='button-wrapper'>
                     <input type="submit" value="Get Recipe" class='getRecipeButton' ui-sref="recipe" ng-disabled="getRecipeButton != true" ng-model='getRecipeButton'
-                        ng-click="id(selectedRecipe)">
+                        ng-click="id(selectedRecipe); startInterval(); startIntervalMakeJson()">
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="second-view">
-        <!--selected recipe-->
+    
 
         <ui-view></ui-view>
     </div>
@@ -58,11 +57,10 @@
     </div>
 
     <div class="index-footer-wrapper">
-        <p>I'm a footer</p>
         <div class="footer-object-wrapper">
-            <div class="footer-object-wiki"></div>
-            <div class="footer-object-clock"></div>
-            <div class="footer-object-crafthelper"></div>
+            <div class="footer-object-wiki"><a href="https://ffxiv.gamerescape.com/wiki/Main_Page" target="_blank" alt=''>Wiki</a></div>
+            <div class="footer-object-clock"><a href="http://www.ffxivclock.com/#/" target="_blank" alt=''>Clock</a></div>
+            <div class="footer-object-crafthelper"><a href="http://ffxiv-beta.lokyst.net/" target="_blank" alt=''>Craft Helper</a></div>
         </div>
     </div>
     </div>

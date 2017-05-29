@@ -23,7 +23,53 @@
 </div>-->
 
 <!--real layout below-->
+<div class="second-view">
 <div class='recipe-recipe-page-wrapper'>
+    <div class='recipe-recipe-details-wrapper'>
+        <div class='recipe-details-title'>Recipe</div>
+        <div class='recipe-details-job'>{{thisRecipe.class_name}}</div>
+        <div class='recipe-details-wrapper'>
+            <div class='recipe-icon-container'><img src="{{thisRecipe.icon}}" class="recipe-image"></div>
+            <div class='recipe-description-container'>
+                <div class="recipe-recipe-name">{{thisRecipe.name}}</div>
+                <div class="recipe-recipe-level">Lv.{{thisRecipe.level}}</div>
+            </div>
+            <div id='recipe-qty-contianer'>
+                <div class="recipe-qty">{{qtyToMake}}</div>
+            </div>
+        </div>
+        <div class="just-a-line"></div>
+    </div>
+    <div class='recipe-materials-list-wrapper'>
+        <div class="recipe-materials-title">Materials</div>
+        <div class="recipe-materials-details-wrapper" ng-repeat='item in tree'>
+            <div class="recipe-materials-qty">{{iQty = item.quantity * qtyToMake}}</div>
+            <div class="recipe-materials-icon"><img src="{{item.icon}}" class="mat-image"></div>
+            <div class="recipe-materials-name">{{item.name}}</div>
+            <p>
+                <nested-recipe ng-if="isRecipe(item.connect_craftable, item.synths)"></nested-recipe>
+                <span ng-init='iName = item.name'></span>
+                <span ng-init="iQty = item.quantity * qtyToMake"></span>
+                <span ng-init="recipeBool = isRecipe(item.connect_craftable)"></span>
+                <span ng-if="isRecipe(item.connect_craftable) == false" ng-init='raw(iName, iQty, sName, sQty, recipeBool)'></span>
+            </p>
+        </div>
+    </div>
+    <div ng-init='combineMats(rawMat)'></div>
+    <shopping-list></shopping-list>
+    <!--<div class='recipe-shopping-list-wrapper'>
+        <div class="recipe-shopping-list-title">Raw Materials Shopping List</div>
+        <div class="recipe-shopping-list-details-wrapper" strike-out>
+            <div class="recipe-list-item-qty">5</div>
+            <div class="recipe-list-item-name">Fire Shards</div>
+        </div>
+    </div>-->
+</div>
+</div>
+
+
+<!--in case i fuck up-->
+<!--<div class='recipe-recipe-page-wrapper'>
     <div class='recipe-recipe-details-wrapper'>
         <div class='recipe-details-title'>Recipe</div>
         <div class='recipe-details-job'>Blacksmith</div>
@@ -33,24 +79,19 @@
                 <div class="recipe-recipe-name">Amateur's File</div>
                 <div class="recipe-recipe-level">Lv.2</div>
             </div>
-            <div id='recipe-qty-contianer'>f
+            <div id='recipe-qty-contianer'>
                 <div class="recipe-qty">1</div>
             </div>
         </div>
+        <div class="just-a-line"></div>
     </div>
     <div class='recipe-materials-list-wrapper'>
         <div class="recipe-materials-title">Materials</div>
         <div class="recipe-materials-details-wrapper">
             <div class="recipe-materials-qty">3</div>
             <div class="recipe-materials-icon"><img src="../styles/imgs/amateurFile.png" class="mat-image"></div>
-            <div class="recipe-materials-name">Bronse Ingot</div>
+            <div class="recipe-materials-name">Bronze Ingot</div>
         </div>
     </div>
-    <div class='recipe-shopping-list-wrapper'>
-        <div class="recipe-shopping-list-title">Raw Materials Shopping List</div>
-        <div class="recipe-shopping-list-details-wrapper" strike-out>
-            <div class="recipe-list-item-qty">5</div>
-            <div class="recipe-list-item-name">Fire Shards</div>
-        </div>
-    </div>
-</div>
+    <shopping-list></shopping-list>
+</div>-->

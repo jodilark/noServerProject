@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
 @font-face {
 	font-family: 'Final Fantasy';
 	src: url('New.eot');
@@ -12,7 +13,39 @@
 	font-style: normal;
 }
 
-$title: 'Final Fantasy';  
+
+//Variables
+$title: 'Final Fantasy';
+$transparent: rgba(0, 0, 0, .02);
+$bottom-emboss: 1px 0px 1px #f4f4f4;
+$primary-text-color: #d6d6d6;
+$secondary-text-color: #807e80;
+$tertiary-text-color: #888670;
+$primary-font: 'Oswald', sans-serif;
+
+@mixin font-style-1 {
+    font-family: $primary-font;
+    font-weight: bold;
+    font-size: 15px;
+}
+@mixin font-style-2 {
+    font-family: $primary-font;
+    font-weight: regular;
+    font-size: 16px;
+}
+
+@mixin font-style-3 {
+    font-family: $primary-font;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+@mixin font-style-4 {
+    font-family: $primary-font;
+    font-size: 25px;
+    transform:scale(2,1); 
+    -webkit-transform:scale(2,1);
+}
 
 @mixin testLook {
     position: relative;
@@ -68,3 +101,42 @@ $title: 'Final Fantasy';
     justify-content: center;
     align-items: center;
 }
+
+@mixin footer-button {
+    flex:1;
+    line-height: 30px;
+    border-left: 1px solid #d6d6d6;
+    border-right: 1px solid #a6a6a6;
+    color: $primary-text-color;
+    text-shadow: 0px 0px 1px black;
+    box-shadow: 1px 0px 1px 2px;
+    // cursor: pointer;
+    text-align: center;
+}
+
+
+@mixin background-gradient {
+  background: #8c8782; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #8c8782 , #6a635b); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #8c8782, #6a635b); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #8c8782, #6a635b); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #8c8782 , #6a635b); /* Standard syntax */
+}
+
+
+@mixin background-line-gradient {
+  background: #807e80; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#4f514f, #807e80, #4f514f); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#4f514f, #807e80, #4f514f); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#4f514f, #807e80, #4f514f); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#4f514f, #807e80, #4f514f); /* Standard syntax */
+}
+@mixin background-footer-gradient {
+  background: #efc986; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#917d52, #efc986); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#917d52, #efc986); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#917d52, #efc986); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#917d52, #efc986); /* Standard syntax */
+}
+
+

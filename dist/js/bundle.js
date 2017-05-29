@@ -14,7 +14,7 @@ angular.module('noServer', ['ui.router', 'ui.select', 'ngSanitize']).config(func
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-angular.module('noServer').controller('changeMeController', function ($scope, changeMeService, $stateParams, recipeListService, singleRecipeService) {
+angular.module('noServer').controller('changeMeController', function ($scope, changeMeService, $stateParams, recipeListService, singleRecipeService, $interval) {
     // hookup tests
     $scope.controllerTest = "changeMe controller is working";
     $scope.serviceTest = changeMeService.serviceTest;
@@ -43,11 +43,21 @@ angular.module('noServer').controller('changeMeController', function ($scope, ch
             $scope.thisRecipe = response.data;
             $scope.tree = response.data.tree;
             console.log($scope.thisRecipe);
+            // console.log($scope.tree[0])
         });
     };
 
+    //   item.synths['1'].tree  
+
     // show directive span if recipe has a url_type = 'recipe'
-    $scope.isRecipe = function (urltype) {
+    $scope.isRecipe = function (urltype, obj) {
+        // console.log(`the obj is ${obj}`)
+        for (var key in obj) {
+            // console.log(`the key in the obj is ${key}`)
+            $scope.synthID = obj[key];
+            // console.log(`the new obj should be ${$scope.synthID} but is actually ${obj[key]}`)
+            break;
+        }
         return urltype > 0;
     };
 
@@ -67,37 +77,52 @@ angular.module('noServer').controller('changeMeController', function ($scope, ch
     // combine duplicate mats
     var shoppingListArr = [];
     $scope.testy = shoppingListArr;
-    $scope.combineMats = function (rawArr) {
-        var a = rawArr;
-        var ans = {};
-        for (var i = 0; i < a.length; ++i) {
-            for (var obj in a[i]) {
-                ans[obj] = ans[obj] ? ans[obj] + a[i][obj] : a[i][obj];
-            }
-        }
-        shoppingListArr.push(ans);
+    $scope.startInterval = function () {
+        $interval(function () {
+            $scope.combineMats = function (rawArr) {
+                var a = rawArr;
+                var ans = {};
+                for (var i = 0; i < a.length; ++i) {
+                    for (var obj in a[i]) {
+                        ans[obj] = ans[obj] ? ans[obj] + a[i][obj] : a[i][obj];
+                    }
+                }
+                shoppingListArr.push(ans);
+            };
+            // console.log(rawArr)
+            $scope.combineMats(rawArr);
+        }, 500, 1);
     };
 
     //make the shoppinListArr into a Json blob
     var jsonObject = [];
     $scope.shoppingJson = jsonObject;
-    $scope.makeJson = function (arr, newKeyName, newValueQty) {
-        var obj = arr[0];
-        // console.log(obj)
-        for (var key in obj) {
-            var _jsonObject$push;
+    $scope.startIntervalMakeJson = function () {
+        $interval(function () {
+            $scope.makeJson = function (arr, newKeyName, newValueQty) {
+                var obj = arr[0];
+                // console.log(obj)
+                for (var key in obj) {
+                    var _jsonObject$push;
 
-            // console.log(key)
-            // console.log(obj[key])
-            jsonObject.push((_jsonObject$push = {}, _defineProperty(_jsonObject$push, newKeyName, key), _defineProperty(_jsonObject$push, newValueQty, obj[key]), _jsonObject$push));
-        }
-        // console.log(jsonObject)
+                    // console.log(key)
+                    // console.log(obj[key])
+                    jsonObject.push((_jsonObject$push = {}, _defineProperty(_jsonObject$push, newKeyName, key), _defineProperty(_jsonObject$push, newValueQty, obj[key]), _jsonObject$push));
+                }
+                // console.log(jsonObject)
+            };
+            // console.log(jsonObject)
+            $scope.makeJson(shoppingListArr, "name", "qty");
+        }, 1000, 1);
     };
 
     //Enable get recipe button
     $scope.enabeGetRecipe = function (bool) {
         return $scope.getRecipeButton = bool;
     };
+
+    //get dynamic synths id
+
 });
 "use strict";
 
